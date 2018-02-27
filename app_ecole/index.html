@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Application des notes</title>.
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js">
+</head>
+<body>
+	<div class="fluid-container">
+		<div class="page-header">
+			<h1>Application des notes</h1>
+			<hr>
+		</div>
+		<h2>Identification</h2>
+		<hr>
+		<div class="row">
+			<div class="col-md-1">
+				<label class="label">Section</label>
+			</div>
+			<div class="col-md-1">
+				<select id="section" class="form-control"></select>
+			</div>
+			<div class="col-md-1">
+				<label class="label">Elève</label>
+			</div>
+			<div class="col-md-1">
+				<select id="etudiant" class="form-control"></select>
+			</div>
+		</div>
+		<h2>Etudiant</h2>
+		<hr>
+		<div class="row">
+			<div class="col-md-2">
+				<label class="label">Nom</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2">
+				<label class="label">Prénom</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label class="label">Date de naissance</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label class="label">Note PHY</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label class="label">Note MAT</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label class="label">Note FRA</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.get('php/section.php', function(data) {
+				var data_ = JSON.parse(data);
+				console.log(data_);
+				data_.forEach(function(element){
+					$("#section").append("<option value='"+element['id']+"'>"+element['libelle']+"</option>");
+				});
+				
+			});
+		});
+		$("#section").change(function(event) {
+			var idsection=$("#section").val();
+			console.log(idsection);
+			$.get('php/etudiant.php?idsection='+idsection, function(data) {
+				var data_ = JSON.parse(data);
+				console.log(data_);
+				$("#etudiant").html("");
+				data_.forEach(function(element){
+					$("#etudiant").append("<option value='"+element['id']+"'>"+element['nom']+" "+element['prenom']+"</option>");
+				});
+				
+			});
+		});
+
+	</script>
+
+</body>
+</html>
