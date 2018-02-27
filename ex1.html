@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Exercice 1</title>
+<style>
+#shape{
+	width: 200px;
+	height: 200px;
+	background: gray;
+}
+</style>
+
+</head>
+<body>
+<label>Votre couleur</label>
+<select id="couleurs" onchange="/*if (this.selectedIndex) changerCouleur();*/">
+	<option value="ffffff" selected>Veuillez choisir une couleur</option>
+	<option value="45db0a">Vert</option>
+	<option value="d60a0a">Rouge</option>
+	<option value="111111">Noir</option>
+	<option value="b811d6">Violet</option>
+	<option value="4286f4">Bleu</option>
+</select>
+<div id="shape"  onmouseout="couleurInit();">
+	
+</div>
+
+
+<script type="text/javascript">
+	//onmouseover="changerCouleur();"
+	var shape = document.getElementById('shape');
+	shape.onmouseover = function (){
+		changerCouleur();
+	};
+	shape.onmouseout=function(){
+		couleurInit();
+	}
+	function changerCouleur(){
+		var select = document.getElementById('couleurs');
+		var selectedIndex = select.selectedIndex;
+		var colorValue = select[selectedIndex].value;
+
+		var shape = document.getElementById("shape");
+
+		//alert("Choosed index = " + selectedIndex);
+		//alert("Choosed color = " + colorValue);
+
+		shape.style.background="#"+colorValue;
+
+	}
+	function couleurInit(){
+		document.getElementById("shape").style.background="gray";
+	}
+/*	function load(){
+		var shape = document.getElementById('shape');
+		shape.addEventListener("click",changerCouleur,false);
+	}*/
+</script>
+</body>
+</html>
