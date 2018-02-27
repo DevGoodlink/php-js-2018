@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EXERCICE1</title>
+	<style type="text/css">
+		.bordered{
+			border-style: solid ;
+			border-color:gray;
+		}
+		.colored{
+			background: #414141;
+		}
+		.bolded{
+			font-weight: bold; 
+		}
+	</style>
+</head>
+<body>
+<input type="checkbox" id="border">Bordure<br>
+<input type="checkbox" id="color">Couleur de fond<br>
+<input type="checkbox" id="bold">Texte en gras<br>
+<div id="txt">
+	<p>I'm doing a (free) operating system (just a hobby, won't be big and professionnal gnu) for 386 (486) AT clones" Linus Torvalds, 25 août 1991</p>
+</div>
+<script type="text/javascript">
+	var border = document.getElementById('border');
+	var color = document.getElementById('color');
+	var bold = document.getElementById('bold');
+	var text = document.getElementById('txt')
+	//ajoute une fonction à l'événement de clique pour les case à cocher
+	//et ajoute la classe css au div en fonction de la case à cocher activés l'enlève lorsqu'elle est désactivée
+	border.onclick=function(){
+		if(border.checked==1){
+			text.classList.add("bordered");
+		}else{
+			text.classList.remove("bordered");
+		}
+	}
+	color.onclick=function(){
+		if(color.checked==1){
+			text.classList.add("colored");
+		}else{
+			text.classList.remove("colored");
+		}
+	}
+	bold.onclick=function(){
+		if(bold.checked==1){
+			text.classList.add("bolded");
+		}else{
+			text.classList.remove("bolded");
+		}
+	}
+
+</script>
+</body>
+</html>
